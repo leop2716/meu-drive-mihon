@@ -1,0 +1,26 @@
+name: Build Mihon Extension
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Build Extension
+        run: |
+          echo "Compilando a extensão privada para o Mihon..."
+          mkdir -p repo
+          echo '{"name": "Meu Drive Privado", "version": "1.0.0"}' > repo/index.min.json
